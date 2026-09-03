@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     # Local
     "accounts",
+    "documents",
 ]
 
 MIDDLEWARE = [
@@ -140,6 +141,12 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 # ---------------------------------------------------------------------------
+# File Upload Limits
+# ---------------------------------------------------------------------------
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5 * 1024 * 1024  # 5 MB
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5 * 1024 * 1024  # 5 MB
+
+# ---------------------------------------------------------------------------
 # Default Primary Key
 # ---------------------------------------------------------------------------
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
@@ -167,6 +174,7 @@ REST_FRAMEWORK = {
         "register": "3/minute",
         "password_reset": "3/minute",
         "change_password": "5/minute",
+        "document_upload": "20/hour",
     },
 }
 
