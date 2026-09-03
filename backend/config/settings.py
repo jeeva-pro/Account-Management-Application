@@ -223,26 +223,21 @@ SPECTACULAR_SETTINGS = {
 # ---------------------------------------------------------------------------
 # CORS
 # ---------------------------------------------------------------------------
-CORS_ALLOWED_ORIGINS = config(
-    "CORS_ALLOWED_ORIGINS",
-    default=(
-        "http://localhost:3000,http://localhost:5173,"
-        "https://account-management-application.vercel.app"
-    ),
-    cast=Csv(),
-)
+configured_origins = config("CORS_ALLOWED_ORIGINS", default="", cast=Csv())
+trusted_frontend_origins = [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "https://account-management-application.vercel.app",
+]
+CORS_ALLOWED_ORIGINS = list(dict.fromkeys(configured_origins + trusted_frontend_origins))
 CORS_ALLOW_CREDENTIALS = True
 
 # ---------------------------------------------------------------------------
 # CSRF Trusted Origins
 # ---------------------------------------------------------------------------
-CSRF_TRUSTED_ORIGINS = config(
-    "CSRF_TRUSTED_ORIGINS",
-    default=(
-        "http://localhost:3000,http://localhost:5173,"
-        "https://account-management-application.vercel.app"
-    ),
-    cast=Csv(),
+configured_csrf_origins = config("CSRF_TRUSTED_ORIGINS", default="", cast=Csv())
+CSRF_TRUSTED_ORIGINS = list(
+    dict.fromkeys(configured_csrf_origins + trusted_frontend_origins)
 )
 
 # ---------------------------------------------------------------------------
