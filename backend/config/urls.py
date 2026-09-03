@@ -53,6 +53,8 @@ urlpatterns = [
     # Authentication & account endpoints
     path("api/auth/", include(auth_urlpatterns)),
     path("api/accounts/", include(account_urlpatterns)),
+    # Documents & transactions
+    path("api/", include("documents.urls")),
     # Health checks
     path("api/health/", health_check, name="health-check"),
     path("api/health/database/", database_health_check, name="database-health-check"),
