@@ -13,7 +13,6 @@ Routes:
 
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib import admin
 from django.http import JsonResponse
 from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
@@ -48,8 +47,6 @@ def database_health_check(request):
 # URL patterns
 # ---------------------------------------------------------------------------
 urlpatterns = [
-    # Django admin
-    path("admin/", admin.site.urls),
     # Authentication & account endpoints
     path("api/auth/", include(auth_urlpatterns)),
     path("api/accounts/", include(account_urlpatterns)),
